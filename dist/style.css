@@ -1,6 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap');
+
 *{
+    font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
     border: none;
     text-decoration: none;
+}
+:root{
+    --background-color : #f2f4ff;
+    --background-color2 :#3c91e6;
+    --background-color2-hover: #1c7ad9;
+    --background-color3: #dbebfa;
+    --settings-background: #135290;
+    --scroll-bar-color: #6c756b;
+    --font-color-1: #dbebfa;
+    --settings-border: #092948
+}
+::-webkit-scrollbar{
+    width: 4px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--scroll-bar-color);
+    border-radius: 10px;
+}
+body{
+    background-color: var(--background-color);
+    display: grid;
+    grid-template-columns: min(300px,20vw) min(900px,60vw) min(300px,20vw);
+    height: 100vh;
+    justify-content: center;
+}
+.sidebar{
+    background-color: var(--background-color2);
+    overflow: scroll;
+    color: var(--font-color-1);
+}
+.sidebar-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.project-list{
+    background-color: var(--background-color);
+}
+.project-details{
+    background-color: var(--background-color3);
+}
+.logo {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    line-height: 40px;
+    gap: 10px;
+}
+.logo h1{
+    font-size: 27px;
+}
+.sidebar-projects{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 20px;
+    margin-top: 80px;
+    width: min(200px,14vw);
+    padding-bottom: 15px;
+    border-bottom: 2px solid #000;
+}
+.sidebar-projects p{
+    font-size: 20px;
+}
+.sidebar-projects>div{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding: 10px 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.sidebar-projects>div:hover{
+    background-color: var(--background-color2-hover);
+}
+.sidebar-statistics{
+    padding: 30px 0 80px;
+    font-size: 17px;
+}
+.sidebar-statistics p{
+    padding-bottom: 5px;
+}
+.settings{
+    font-size: 25px;
+    position: absolute;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    line-height: 30px;
+    background-color: var(--settings-background);
+    width: min(300px,20vw);
+    align-items: center;
+}
+.settings p{
+    text-align: center;
+    padding: 10px 0;
+    border-right: 2px solid var(--settings-border);
+}
+.settings svg{
+    margin: auto;
+    padding: 10px 20px;
+    cursor: pointer;
 }
