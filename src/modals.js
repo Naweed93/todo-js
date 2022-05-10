@@ -25,8 +25,8 @@ function modalComponent(){
 <div class="change-theme">
     <p>Change theme:</p>
     <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
+        <input type="checkbox" id="theme-check">
+        <span class="slider light">light</span>
     </label>
 </div>
 <div class="settings-buttons">
@@ -152,6 +152,25 @@ function deleteTaskModal(){
     document.querySelector('.task-details').innerHTML = '';
     document.querySelector('.active-task').parentElement.removeChild(document.querySelector('.active-task'));
 }
+function settingsModal(){
+    document.querySelector('.settings p').innerText = document.querySelector('#username').value;
+    removeModal();
+}
+function changeTheme(){
+    const themeElement = document.querySelector('.slider');
+    const theme = themeElement.innerText
+    if(theme == 'light'){
+        themeElement.innerText = "dark";
+        themeElement.classList.add('dark');
+        themeElement.classList.remove('light')
+    }
+    else{
+        const themeElement = document.querySelector('.dark');
+        themeElement.innerText = "light";
+        themeElement.classList.add('light');
+        themeElement.classList.remove('dark')
+    }
+}
 
 export function buildModal(item){
     if(!document.querySelector('.modal')){
@@ -195,6 +214,12 @@ function modalBehavior(item){
     if( item == 'addSubTask'){
         document.querySelector('.add-sub-task-buttons p:first-child').addEventListener('click',
         addSubTaskModal);
+    }
+    if( item == 'settings'){
+        document.querySelector('.settings-buttons p:first-child').addEventListener('click',
+        settingsModal);
+        document.querySelector('#theme-check').addEventListener('change',
+        changeTheme)
     }
 }
 function removeModal(){
