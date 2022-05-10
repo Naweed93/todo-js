@@ -1,4 +1,5 @@
 import {newUser} from "./index"
+import {addProjectTasksPage} from "./base"
 
 function modalComponent(){
     const settingsInterface = document.createElement('div');
@@ -112,6 +113,9 @@ function addProjectModal(){
     projectName +
     `</p>`;
     document.querySelector('.sidebar-projects').insertBefore(myproject,document.querySelector('.new-project-btn'));
+    myproject.addEventListener('click',addProjectTasksPage.bind(
+        null,newUser.getProject().length -1
+    ));
     removeModal();
 }
 function editProjectModal(){
@@ -151,7 +155,7 @@ function addSubTaskModal(){
 }
 function deleteProjectModal(){
     document.querySelector('.sidebar-projects').removeChild(document.querySelector('.active-project'));
-    //should add '.active-project' to all projects
+    removeModal();
 }
 function deleteTaskModal(){
     document.querySelector('.task-details').innerHTML = '';
