@@ -1,3 +1,5 @@
+import {newUser} from "./index"
+
 function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
@@ -157,6 +159,7 @@ function settingsModal(){
     removeModal();
 }
 function changeTheme(){
+    console.log(newUser.getUsername());
     const themeElement = document.querySelector('.slider');
     const theme = themeElement.innerText
     if(theme == 'light'){

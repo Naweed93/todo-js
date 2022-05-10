@@ -7,7 +7,6 @@ export function sidebarComponent(){
     const sidebarStatistics = document.createElement('div');
     const allTasksBtn = document.createElement('div');
     const todayTasksBtn = document.createElement('div');
-    const taskProject1 = document.createElement('div');
     const newProjectBtn = document.createElement('div');
 
     sidebar.classList.add('sidebar');
@@ -18,7 +17,6 @@ export function sidebarComponent(){
     sidebarStatistics.classList.add('sidebar-statistics');
     allTasksBtn.classList.add('all-tasks-btn','active-project');
     todayTasksBtn.classList.add('today-tasks-btn');
-    taskProject1.classList.add('task-project-1');
     newProjectBtn.classList.add('new-project-btn');
 
     sidebar.appendChild(sidebarContent);
@@ -33,7 +31,6 @@ export function sidebarComponent(){
   <h1>Worganizer</h1>`;
     sidebarProjects.appendChild(allTasksBtn);
     sidebarProjects.appendChild(todayTasksBtn);
-    sidebarProjects.appendChild(taskProject1);
     sidebarProjects.appendChild(newProjectBtn);
     allTasksBtn.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
@@ -47,10 +44,6 @@ export function sidebarComponent(){
     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
   </svg>
 <p>Today</p>`;
-    taskProject1.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder2" viewBox="0 0 16 16">
-    <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
-  </svg>
-<p>My Project</p>`;
     newProjectBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
   </svg>

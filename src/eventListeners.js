@@ -1,4 +1,5 @@
 import { buildModal } from "./modals";
+import { addProjectTasksPage } from "./base";
 
 
 export function buildEventListeners(){
@@ -18,4 +19,9 @@ export function buildEventListeners(){
     buildModal.bind(null, 'addSubTask'));
     document.querySelector('.delete-sub-task').addEventListener('click',
     buildModal.bind(null, 'deleteTask'));
+    for(let i = 0; i < document.querySelectorAll('.sidebar-projects>div').length - 1;i++){
+        document.querySelectorAll('.sidebar-projects>div')[i].addEventListener('click',addProjectTasksPage.bind(
+            null,i
+        ));
+    }
 }
