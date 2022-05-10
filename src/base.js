@@ -1,7 +1,7 @@
 import { sidebarComponent } from "./sidebar";
+import { projectListComponent } from "./projectList";
 import { taskDetailsComponent } from "./taskDetails";
 
 export function buildwebsite(){
-    document.body.insertBefore(sidebarComponent(),document.body.firstChild);
-    document.body.appendChild(taskDetailsComponent());
+    document.body.append(sidebarComponent(), projectListComponent(), taskDetailsComponent());
 }
