@@ -378,3 +378,10 @@ input:checked + .slider::before{
     cursor: pointer;
     margin-top: 20px;
 }
+.change-task-date{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 20px;
+    align-items: center;
+}
