@@ -102,16 +102,16 @@ function modalComponent(){
 function addProjectModal(){
     const myproject=document.createElement('div');
     let className = 'project-' + (newUser.getProject().length -1);
-    newUser.addProject([className, document.querySelector('#add-project').value])
+    let projectName = document.querySelector('#add-project').value;
+    newUser.addProject([className, projectName])
     myproject.classList.add(className);
     myproject.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder2" viewBox="0 0 16 16">
     <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"></path>
   </svg>
 <p>`+
-    document.querySelector('#add-project').value +
+    projectName +
     `</p>`;
     document.querySelector('.sidebar-projects').insertBefore(myproject,document.querySelector('.new-project-btn'));
-    console.log(newUser.getProject());
     removeModal();
 }
 function editProjectModal(){
@@ -158,7 +158,11 @@ function deleteTaskModal(){
     document.querySelector('.active-task').parentElement.removeChild(document.querySelector('.active-task'));
 }
 function settingsModal(){
-    document.querySelector('.settings p').innerText = document.querySelector('#username').value;
+    let userName = document.querySelector('#username').value
+    document.querySelector('.settings p').innerText = userName;
+    newUser.setUsername(userName);
+    console.log(newUser.getUsername())
+    console.log(newUser.getProject())
     removeModal();
 }
 function changeTheme(){
@@ -168,13 +172,14 @@ function changeTheme(){
     if(theme == 'light'){
         themeElement.innerText = "dark";
         themeElement.classList.add('dark');
-        themeElement.classList.remove('light')
+        themeElement.classList.remove('light');
+        newUser.setTheme('dark');
     }
     else{
-        const themeElement = document.querySelector('.dark');
         themeElement.innerText = "light";
         themeElement.classList.add('light');
         themeElement.classList.remove('dark')
+        newUser.setTheme('light')
     }
 }
 

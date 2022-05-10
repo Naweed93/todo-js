@@ -32,6 +32,7 @@ export const user = (_username) =>{
         "completed":false
     }
     ];
+    let _theme = 'light';
     const addProject = (project) => {
         _projects.push(project);
     };
@@ -47,5 +48,8 @@ export const user = (_username) =>{
     const setUsername = (username) =>{
         _username = username;
     };
-    return { addProject, getUsername, setUsername, getProject, getTasks };
+    const setTheme = (theme) => {
+        _theme = theme;
+    };
+    return { addProject, getUsername, setUsername, getProject, getTasks, setTheme };
 };
