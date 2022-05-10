@@ -66,7 +66,7 @@ function modalComponent(){
 </div>
 <div class="change-task-date">
     <p>Due date:</p>
-    <date></date>
+    <input type="date" id="edit-task-date" name="add-task-date">
 </div>
 <div class="edit-task-buttons">
     <p>Ok</p>
@@ -78,7 +78,7 @@ function modalComponent(){
 </div>
 <div class="change-task-date">
     <p>Due date:</p>
-    <date></date>
+    <input type="date" id="add-task-date" name="add-task-date">
 </div>
 <div class="add-task-buttons">
     <p>Ok</p>
@@ -120,7 +120,7 @@ function addTaskModal(){
     addedTask.innerHTML = `<input type="checkbox" id="task1" name="task1" value="task1">
     <div class="task-content">
         <p>`+ document.querySelector('#add-task').value + `</p>
-        <date>19/12/2022</date>
+        <date>`+ document.querySelector('#add-task-date').value +`</date>
     </div>`;
     document.querySelector('.active-tasks').insertBefore(addedTask, document.querySelector('.new-task'));
     removeModal();
@@ -128,6 +128,8 @@ function addTaskModal(){
 function editTaskModal(){
     document.querySelector('.active-task p').innerText = document.querySelector('#edit-task').value;
     document.querySelector('.task-name h3').innerText = document.querySelector('#edit-task').value;
+    document.querySelector('.active-task date').innerText = document.querySelector('#edit-task-date').value;
+
     removeModal();
 }
 function addSubTaskModal(){
