@@ -16,7 +16,7 @@ export function sidebarComponent(){
     logo.classList.add('logo');
     sidebarProjects.classList.add('sidebar-projects');
     sidebarStatistics.classList.add('sidebar-statistics');
-    allTasksBtn.classList.add('all-tasks-btn');
+    allTasksBtn.classList.add('all-tasks-btn','active-project');
     todayTasksBtn.classList.add('today-tasks-btn');
     taskProject1.classList.add('task-project-1');
     newProjectBtn.classList.add('new-project-btn');

@@ -1,4 +1,4 @@
-import { buildModal } from "./base";
+import { buildModal } from "./modals";
 
 
 export function buildEventListeners(){

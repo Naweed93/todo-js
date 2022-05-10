@@ -27,7 +27,7 @@ export function taskDetailsComponent(){
     taskProperties.innerHTML += '<h4>Sub tasks:</h4>';
     taskProperties.append(subTasks);
     subTasks.append(subTask1, newSubTask);
-    subTask1.innerHTML = `<input type="checkbox" checked id="task3" name="task3" value="task3">`;
+    subTask1.innerHTML = `<input type="checkbox" id="task3" name="task3" value="task3">`;
     subTask1.append(subTaskName);
 
 

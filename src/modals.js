@@ -1,4 +1,4 @@
-export function modalComponent(){
+function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
     const editProject = document.createElement('div');
@@ -96,4 +96,105 @@ export function modalComponent(){
     return {settings:settingsInterface, addProject:addProject, editProject:editProject,
         deleteProject:projectDelete, deleteTask:taskDelete, editTask:editTask,
         addTask:addTask, addSubTask:addSubTask};
+}
+function addProjectModal(){
+    const myproject=document.createElement('div');
+    myproject.classList.add('task-project');
+    myproject.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder2" viewBox="0 0 16 16">
+    <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"></path>
+  </svg>
+<p>`+
+    document.querySelector('#add-project').value +
+    `</p>`;
+    document.querySelector('.sidebar-projects').insertBefore(myproject,document.querySelector('.new-project-btn'));
+    removeModal();
+}
+function editProjectModal(){
+    document.querySelector('.project-name h2').innerText = document.querySelector('#edit-project').value;
+    document.querySelector('.active-project p').innerText = document.querySelector('#edit-project').value;
+    removeModal();
+}
+function addTaskModal(){
+    const addedTask = document.createElement('div');
+    addedTask.classList.add('task4');
+    addedTask.innerHTML = `<input type="checkbox" id="task1" name="task1" value="task1">
+    <div class="task-content">
+        <p>`+ document.querySelector('#add-task').value + `</p>
+        <date>19/12/2022</date>
+    </div>`;
+    document.querySelector('.active-tasks').insertBefore(addedTask, document.querySelector('.new-task'));
+    removeModal();
+}
+function editTaskModal(){
+    document.querySelector('.active-task p').innerText = document.querySelector('#edit-task').value;
+    document.querySelector('.task-name h3').innerText = document.querySelector('#edit-task').value;
+    removeModal();
+}
+function addSubTaskModal(){
+    const addedSubTask = document.createElement('div');
+    addedSubTask.classList.add('sub-task-4');
+    addedSubTask.innerHTML = `<input type="checkbox" id="task3" name="task3" value="task3">
+    <div class="sub-task-name"><p>`+ document.querySelector('#add-sub-task').value + `</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-x-lg" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+      </svg></div>`;
+      document.querySelector('.sub-tasks').insertBefore(addedSubTask, document.querySelector('.new-sub-task'));
+    removeModal();
+}
+function deleteProjectModal(){
+    document.querySelector('.sidebar-projects').removeChild(document.querySelector('.active-project'));
+    //should add '.active-project' to all projects
+}
+function deleteTaskModal(){
+    document.querySelector('.task-details').innerHTML = '';
+    document.querySelector('.active-task').parentElement.removeChild(document.querySelector('.active-task'));
+}
+
+export function buildModal(item){
+    if(!document.querySelector('.modal')){
+        const modal = document.createElement('div');
+        
+        modal.classList.add('modal');
+
+        modal.appendChild(modalComponent()[item]);
+        document.body.append(modal);
+        modalBehavior(item);
+    }
+}
+
+function modalBehavior(item){
+    document.querySelector('.modal p:last-child').addEventListener('click',
+    removeModal);
+    if( item == 'addProject'){
+        document.querySelector('.add-project-buttons p:first-child').addEventListener('click',
+        addProjectModal);
+    }
+    if( item == 'editProject'){
+        document.querySelector('.edit-project-buttons p:first-child').addEventListener('click',
+        editProjectModal);
+    }
+    if( item == 'deleteProject'){
+        document.querySelector('.project-delete-buttons p:first-child').addEventListener('click',
+        deleteProjectModal);
+    }
+    if( item == 'addTask'){
+        document.querySelector('.add-task-buttons p:first-child').addEventListener('click',
+        addTaskModal);
+    }
+    if( item == 'editTask'){
+        document.querySelector('.edit-task-buttons p:first-child').addEventListener('click',
+        editTaskModal);
+    }
+    if( item == 'deleteTask'){
+        document.querySelector('.task-delete-buttons p:first-child').addEventListener('click',
+        deleteTaskModal);
+    }
+    if( item == 'addSubTask'){
+        document.querySelector('.add-sub-task-buttons p:first-child').addEventListener('click',
+        addSubTaskModal);
+    }
+}
+function removeModal(){
+    document.body.removeChild(document.querySelector('.modal'));
 }
