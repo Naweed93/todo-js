@@ -28,6 +28,11 @@ export function addProjectTasksPage(index){
     const projectList = document.querySelector('.project-list');
     projectList.innerHTML='';
     
+    //change .active-project to current project
+    if(document.querySelector('.active-project')){
+        document.querySelector('.active-project').classList.remove('active-project');
+    }
+    document.querySelector('.'+newUser.getProject()[index][0]).classList.add('active-project');
     //create elements
     const projectHeader = document.createElement('div');
     const taskList = document.createElement('div');

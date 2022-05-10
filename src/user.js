@@ -1,5 +1,5 @@
 export const user = (_username) =>{
-    let _projects = [['all-tasks-btn','All tasks'],['today','Today'],['project-1','My project'],['project-2','your project']];
+    let _projects = [['all-tasks-btn','All tasks'],['today-tasks-btn','Today'],['project-1','My project'],['project-2','your project']];
     let _tasks = [
         {"project":"project-1",
         "date": "19/12/2021",
