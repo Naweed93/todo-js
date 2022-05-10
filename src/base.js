@@ -6,9 +6,12 @@ import { buildModal } from "./modals";
 
 export function buildwebsite(){
     document.body.append(sidebarComponent(), projectListComponent(), taskDetailsComponent());
+    for(let i = 2; i < newUser.getProject().length ; i++ ){
+        addProjectSidebar(newUser.getProject()[i][0],newUser.getProject()[i][1]);
+    }
 }
 
-export function addProjectSidebar(projectClass,projectName){
+function addProjectSidebar(projectClass,projectName){
     const newProject = document.createElement('div');
     newProject.classList.add(projectClass);
     newProject.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder2" viewBox="0 0 16 16">
