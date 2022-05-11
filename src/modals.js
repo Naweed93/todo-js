@@ -1,5 +1,5 @@
 import {newUser} from "./index"
-import {addProjectTasksPage} from "./base"
+import {addProjectTasksPage, addTaskDetailPage} from "./base"
 //add project, delete project, add task, settings connected to user
 function modalComponent(){
     const settingsInterface = document.createElement('div');
@@ -147,6 +147,7 @@ function addTaskModal(){
     </div>`;
     document.querySelector('.active-tasks').insertBefore(addedTask, document.querySelector('.new-task'));
     newUser.addTask(taskProject, taskDate, taskClass, taskName);
+    document.querySelector("."+taskClass).addEventListener('click',addTaskDetailPage.bind(null, taskClass));
     removeModal();
 }
 function editTaskModal(){
