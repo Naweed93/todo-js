@@ -151,10 +151,19 @@ function addTaskModal(){
     removeModal();
 }
 function editTaskModal(){
-    document.querySelector('.active-task p').innerText = document.querySelector('#edit-task').value;
-    document.querySelector('.task-name h3').innerText = document.querySelector('#edit-task').value;
-    document.querySelector('.active-task date').innerText = document.querySelector('#edit-task-date').value;
-
+    const taskName = document.querySelector('#edit-task').value;
+    const taskDate = document.querySelector('#edit-task-date').value;
+    const task = document.querySelector('.active-task');
+    task.querySelector('p').innerText = taskName;
+    document.querySelector('.task-name h3').innerText = taskName;
+    task.querySelector('date').innerText = taskDate;
+    document.querySelector('.task-due-date date').innerText = taskDate;
+    for (let element of newUser.getTasks()) {
+        if (task.classList[0] == element['class']){
+            newUser.editTask(taskName,taskDate, newUser.getTasks().indexOf(element) );
+            break;
+        }
+    }
     removeModal();
 }
 function addSubTaskModal(){

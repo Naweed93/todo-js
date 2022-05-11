@@ -230,4 +230,8 @@ export function addTaskDetailPage(taskClass){
   </svg>
   <p>Add new sub task...</p>`;
     deleteSubTask.innerText = `Delete task`;
+
+    //adding eventListeners
+    document.querySelector('.task-name svg').addEventListener('click',
+    buildModal.bind(null, 'editTask'));
 }

@@ -89,6 +89,10 @@ export const user = (_username) =>{
             "completed":false
         });
     };
+    const editTask = (taskName,taskDate,index) => {
+        _tasks[index]['name']=taskName;
+        _tasks[index]['date']=taskDate;
+        };
     const getUsername = () =>{
         return _username
     };
@@ -99,5 +103,6 @@ export const user = (_username) =>{
         _theme = theme;
     };
     return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length,
-        deleteProject, deleteTask, task_length, addTask, changeProjectName, sub_task_length, getSubTasks };
+        deleteProject, deleteTask, task_length, addTask, changeProjectName, sub_task_length, getSubTasks,
+        editTask };
 };
