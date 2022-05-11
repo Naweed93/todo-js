@@ -1,7 +1,6 @@
 import {newUser} from "./index"
 import {addProjectTasksPage, addTaskDetailPage} from "./base"
-import { user } from "./user";
-//add project, delete project, edit project, add task, edit task, add sub task, settings connected to user
+
 function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
@@ -219,8 +218,6 @@ function deleteTaskModal(){
             newUser.deleteSubTask(index);
         }
     }
-    console.log(newUser.getSubTasks());
-    console.log(newUser.getTasks());
     removeModal();
 }
 function settingsModal(){

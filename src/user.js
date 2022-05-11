@@ -90,6 +90,14 @@ export const user = (_username) =>{
         _tasks[index]['name']=taskName;
         _tasks[index]['date']=taskDate;
         };
+    const changeTaskStatus = (index) => {
+        if (_tasks[index]['completed'] ){
+            _tasks[index]['completed'] = false ;
+        }
+        else{
+            _tasks[index]['completed'] = true ;
+        }
+    };
     const getUsername = () =>{
         return _username
     };
@@ -115,5 +123,5 @@ export const user = (_username) =>{
     };
     return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length,
         deleteProject, deleteTask, task_length, addTask, changeProjectName, sub_task_length, getSubTasks,
-        editTask, addSubTask, deleteSubTask };
+        editTask, addSubTask, deleteSubTask, changeTaskStatus };
 };

@@ -3,7 +3,7 @@ import { projectListComponent } from "./projectList";
 import { taskDetailsComponent } from "./taskDetails";
 import { newUser } from "./index";
 import { buildModal } from "./modals";
-import { buildTaskEventListener } from "./eventListeners";
+import { buildTaskEventListener, buildTaskCheckListener } from "./eventListeners";
 
 export function buildwebsite(){
     document.body.append(sidebarComponent(), projectListComponent(), taskDetailsComponent());
@@ -137,6 +137,7 @@ export function addProjectTasksPage(projectClass){
     }
 
     buildTaskEventListener();
+    buildTaskCheckListener();
 }
 
 //changing task-details interface when clicking on tasks in sidebar.
@@ -238,4 +239,24 @@ export function addTaskDetailPage(taskClass){
     buildModal.bind(null, 'addSubTask'));
     document.querySelector('.delete-sub-task').addEventListener('click',
     buildModal.bind(null, 'deleteTask'));
+}
+
+export function changeTaskStatus(taskClass){
+    const task = document.querySelector('.' + taskClass);
+    const activeTasks = document.querySelector('.active-tasks');
+    const completedTasks = document.querySelector('.completed-tasks');
+    for (const item of newUser.getTasks()) {
+        if(item['class'] == taskClass){
+            if(item['completed']){
+                task.parentNode.removeChild(task);
+                activeTasks.insertBefore(task,document.querySelector('.new-task'));
+            }
+            else{
+                task.parentNode.removeChild(task);
+                completedTasks.append(task);
+            }
+            newUser.changeTaskStatus(newUser.getTasks().indexOf(item));
+            break;
+        }
+    }
 }
