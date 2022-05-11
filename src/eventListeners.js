@@ -1,5 +1,5 @@
 import { buildModal } from "./modals";
-import { addProjectTasksPage, addTaskDetailPage, changeTaskStatus, changeSubTaskStatus} from "./base";
+import { addProjectTasksPage, addTaskDetailPage, changeTaskStatus, changeSubTaskStatus, deleteSubTaskElement} from "./base";
 
 
 export function buildEventListeners(){
@@ -43,5 +43,12 @@ export function buildSubTaskCheckListener(){
     const subTaskChecks = document.querySelectorAll('.sub-tasks input');
     for (const element of subTaskChecks) {
         element.addEventListener('change',changeSubTaskStatus.bind(null, element.id))
+    }
+}
+
+export function buildDeleteSubTaskListener(){
+    const subTasks = document.querySelectorAll('.sub-tasks input');
+    for (const element of subTasks) {
+        document.querySelector('.'+element.id+' svg').addEventListener('click',deleteSubTaskElement.bind(null, element.id))
     }
 }

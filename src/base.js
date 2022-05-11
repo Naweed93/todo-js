@@ -3,7 +3,7 @@ import { projectListComponent } from "./projectList";
 import { taskDetailsComponent } from "./taskDetails";
 import { newUser } from "./index";
 import { buildModal } from "./modals";
-import { buildTaskEventListener, buildTaskCheckListener, buildSubTaskCheckListener } from "./eventListeners";
+import { buildTaskEventListener, buildTaskCheckListener, buildSubTaskCheckListener, buildDeleteSubTaskListener } from "./eventListeners";
 
 export function buildwebsite(){
     document.body.append(sidebarComponent(), projectListComponent(), taskDetailsComponent());
@@ -241,6 +241,8 @@ export function addTaskDetailPage(taskClass){
     buildModal.bind(null, 'deleteTask'));
 
     buildSubTaskCheckListener();
+    buildDeleteSubTaskListener();
+
 }
 
 export function changeTaskStatus(taskClass){
@@ -268,6 +270,18 @@ export function changeSubTaskStatus(subTaskClass){
         if(item['class'] == subTaskClass){
             console.log(item['completed']);
             newUser.changeSubTaskStatus(newUser.getSubTasks().indexOf(item));
+            break;
+        }
+    }
+}
+
+export function deleteSubTaskElement(subTaskClass){
+    const subTask = document.querySelector('.'+subTaskClass);
+    for (const item of newUser.getSubTasks()) {
+        if( item['class'] == subTaskClass){
+            newUser.deleteSubTask(newUser.getSubTasks().indexOf(item));
+            subTask.parentElement.removeChild(subTask);
+            console.log(newUser.getSubTasks())
             break;
         }
     }
