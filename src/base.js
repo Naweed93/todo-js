@@ -32,6 +32,12 @@ export function addProjectTasksPage(projectClass){
         }
         index += 1;
     }
+
+    //delete task-details content
+    const selectedProject = document.querySelector('.' + projectClass);
+    if(selectedProject.classList[1] != 'active-project'){
+        document.querySelector('.task-details').innerHTML = ''
+    }
     //create container
     const projectList = document.querySelector('.project-list');
     projectList.innerHTML='';
@@ -40,7 +46,7 @@ export function addProjectTasksPage(projectClass){
     if(document.querySelector('.active-project')){
         document.querySelector('.active-project').classList.remove('active-project');
     }
-    document.querySelector('.'+newUser.getProject()[index][0]).classList.add('active-project');
+    selectedProject.classList.add('active-project');
     //create elements
     const projectHeader = document.createElement('div');
     const taskList = document.createElement('div');
