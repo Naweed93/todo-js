@@ -130,7 +130,6 @@ function editProjectModal(){
             break;
         }
     }
-    console.log(newUser.getProject())
     removeModal();
 }
 function addTaskModal(){
