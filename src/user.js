@@ -1,3 +1,5 @@
+import { localStorageManager } from "./localStorage";
+
 export const user = (_username) =>{
     let _projects = [['all-tasks-btn','All tasks'],['today-tasks-btn','Today'],['project-1','My project'],['project-2','your project']];
     let _tasks = [
@@ -61,6 +63,7 @@ export const user = (_username) =>{
     let sub_task_length = 4;
     const addProject = (project) => {
         _projects.push(project);
+        localStorageManager('add-project');
     };
     const getProject = () =>{
         return _projects;
@@ -77,14 +80,15 @@ export const user = (_username) =>{
     const deleteTask = (index) => {        
             _tasks.splice(index, 1);   
     };
-    const addTask = (taskProject,taskDate,taskClass,taskName) => {
+    const addTask = (taskProject,taskDate,taskClass,taskName, taskCompleted = false) => {
         _tasks.push({
             "project":taskProject,
             "date":taskDate,
             "class":taskClass,
             "name":taskName,
-            "completed":false
+            "completed":taskCompleted
         });
+        localStorageManager('add-task');
     };
     const editTask = (taskName,taskDate,index) => {
         _tasks[index]['name']=taskName;
@@ -110,13 +114,14 @@ export const user = (_username) =>{
     const getSubTasks = () => {
         return _subTasks;
     };
-    const addSubTask = (subTaskParent, subTaskClass, subTaskName) => {
+    const addSubTask = (subTaskParent, subTaskClass, subTaskName, subTaskCompleted = false) => {
         _subTasks.push({
             'task': subTaskParent,
             'class': subTaskClass,
             'name': subTaskName,
-            'completed': false
+            'completed': subTaskCompleted
         });
+        localStorageManager('add-sub-task');
     };
     const deleteSubTask = (index) => {
         _subTasks.splice(index, 1);
