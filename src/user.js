@@ -58,7 +58,7 @@ export const user = (_username) =>{
     let _theme = 'light';
     let project_length = 2;
     let task_length = 5;
-    let sub_task_length = 3;
+    let sub_task_length = 4;
     const addProject = (project) => {
         _projects.push(project);
     };
@@ -73,9 +73,6 @@ export const user = (_username) =>{
     };
     const getTasks = () => {
         return _tasks;
-    };
-    const getSubTasks = () => {
-        return _subTasks;
     };
     const deleteTask = (index) => {        
             _tasks.splice(index, 1);   
@@ -102,7 +99,18 @@ export const user = (_username) =>{
     const setTheme = (theme) => {
         _theme = theme;
     };
+    const getSubTasks = () => {
+        return _subTasks;
+    };
+    const addSubTask = (subTaskParent, subTaskClass, subTaskName) => {
+        _subTasks.push({
+            'task': subTaskParent,
+            'class': subTaskClass,
+            'name': subTaskName,
+            'completed': false
+        });
+    }
     return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length,
         deleteProject, deleteTask, task_length, addTask, changeProjectName, sub_task_length, getSubTasks,
-        editTask };
+        editTask, addSubTask };
 };

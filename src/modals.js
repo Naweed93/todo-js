@@ -1,6 +1,7 @@
 import {newUser} from "./index"
 import {addProjectTasksPage, addTaskDetailPage} from "./base"
-//add project, delete project, edit project, add task, settings connected to user
+import { user } from "./user";
+//add project, delete project, edit project, add task, edit task, settings connected to user
 function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
@@ -167,15 +168,20 @@ function editTaskModal(){
     removeModal();
 }
 function addSubTaskModal(){
+    newUser.sub_task_length += 1;
     const addedSubTask = document.createElement('div');
-    addedSubTask.classList.add('sub-task-4');
-    addedSubTask.innerHTML = `<input type="checkbox" id="task3" name="task3" value="task3">
-    <div class="sub-task-name"><p>`+ document.querySelector('#add-sub-task').value + `</p>
+    const subTaskClass = 'sub-task-'+newUser.sub_task_length;
+    const subTaskName = document.querySelector('#add-sub-task').value
+    const subTaskParent = document.querySelector('.active-task').classList[0];
+    addedSubTask.classList.add(subTaskClass);
+    addedSubTask.innerHTML = `<input type="checkbox" id="`+subTaskClass+`" name="`+subTaskClass+`">
+    <div class="sub-task-name"><p>`+ subTaskName + `</p>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-x-lg" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
         <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
       </svg></div>`;
       document.querySelector('.sub-tasks').insertBefore(addedSubTask, document.querySelector('.new-sub-task'));
+      newUser.addSubTask(subTaskParent,subTaskClass,subTaskName);
     removeModal();
 }
 function deleteProjectModal(){

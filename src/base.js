@@ -234,4 +234,6 @@ export function addTaskDetailPage(taskClass){
     //adding eventListeners
     document.querySelector('.task-name svg').addEventListener('click',
     buildModal.bind(null, 'editTask'));
+    document.querySelector('.new-sub-task').addEventListener('click',
+    buildModal.bind(null, 'addSubTask'));
 }
