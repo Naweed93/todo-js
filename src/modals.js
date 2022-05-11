@@ -155,7 +155,21 @@ function addSubTaskModal(){
     removeModal();
 }
 function deleteProjectModal(){
-    document.querySelector('.sidebar-projects').removeChild(document.querySelector('.active-project'));
+    const activeProject = document.querySelector('.active-project');
+    activeProject.parentElement.removeChild(activeProject);
+    for (let element of newUser.getProject()) {
+        if(activeProject.classList[0] == element[0]){
+            newUser.deleteProject(newUser.getProject().indexOf(element));
+            break;
+        }
+    }
+    const tasks = newUser.getTasks()
+    for (let i = tasks.length - 1 ; i >= 0; i--) {
+        if(activeProject.classList[0] == tasks[i]['project']){
+            newUser.deleteTask(i);
+        }
+    }
+    addProjectTasksPage('all-tasks-btn');
     removeModal();
 }
 function deleteTaskModal(){

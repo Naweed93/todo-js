@@ -27,7 +27,6 @@ export function addProjectTasksPage(projectClass){
     let index = 0
     for (let item of newUser.getProject()) {
         if(item[0] == projectClass){
-            console.log(index);
             break;
         }
         index += 1;
