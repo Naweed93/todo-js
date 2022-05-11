@@ -34,6 +34,7 @@ export const user = (_username) =>{
     ];
     let _theme = 'light';
     let project_length = 2;
+    let task_length = 5;
     const addProject = (project) => {
         _projects.push(project);
     };
@@ -49,6 +50,15 @@ export const user = (_username) =>{
     const deleteTask = (index) => {        
             _tasks.splice(index, 1);   
     };
+    const addTask = (taskProject,taskDate,taskClass,taskName) => {
+        _tasks.push({
+            "project":taskProject,
+            "date":taskDate,
+            "class":taskClass,
+            "name":taskName,
+            "completed":false
+        });
+    };
     const getUsername = () =>{
         return _username
     };
@@ -58,5 +68,5 @@ export const user = (_username) =>{
     const setTheme = (theme) => {
         _theme = theme;
     };
-    return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length, deleteProject, deleteTask };
+    return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length, deleteProject, deleteTask, task_length, addTask };
 };

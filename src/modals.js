@@ -1,6 +1,6 @@
 import {newUser} from "./index"
 import {addProjectTasksPage} from "./base"
-
+//add project, delete project, settings connected to user
 function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
@@ -125,14 +125,20 @@ function editProjectModal(){
     removeModal();
 }
 function addTaskModal(){
+    newUser.task_length += 1;
     const addedTask = document.createElement('div');
-    addedTask.classList.add('task4');
-    addedTask.innerHTML = `<input type="checkbox" id="task1" name="task1" value="task1">
+    const taskName = document.querySelector('#add-task').value;
+    const taskDate = document.querySelector('#add-task-date').value
+    const taskProject = document.querySelector('.active-project').classList[0];
+    const taskClass = 'task-' + newUser.task_length
+    addedTask.classList.add(taskClass);
+    addedTask.innerHTML = `<input type="checkbox" id="`+taskClass+`" name="`+taskClass+`"">
     <div class="task-content">
-        <p>`+ document.querySelector('#add-task').value + `</p>
-        <date>`+ document.querySelector('#add-task-date').value +`</date>
+        <p>`+ taskName + `</p>
+        <date>`+ taskDate +`</date>
     </div>`;
     document.querySelector('.active-tasks').insertBefore(addedTask, document.querySelector('.new-task'));
+    newUser.addTask(taskProject, taskDate, taskClass, taskName);
     removeModal();
 }
 function editTaskModal(){
