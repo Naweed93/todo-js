@@ -1,7 +1,7 @@
 import {newUser} from "./index"
 import {addProjectTasksPage, addTaskDetailPage} from "./base"
 import { user } from "./user";
-//add project, delete project, edit project, add task, edit task, settings connected to user
+//add project, delete project, edit project, add task, edit task, add sub task, settings connected to user
 function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
@@ -203,8 +203,25 @@ function deleteProjectModal(){
     removeModal();
 }
 function deleteTaskModal(){
+    const task = document.querySelector('.active-task');
+    const taskClass = task.classList[0];
     document.querySelector('.task-details').innerHTML = '';
-    document.querySelector('.active-task').parentElement.removeChild(document.querySelector('.active-task'));
+    task.parentElement.removeChild(task);
+    for (let item of newUser.getTasks()) {
+        if(taskClass == item['class']){
+            newUser.deleteTask(newUser.getTasks().indexOf(item));
+            break;
+        }
+    }
+    const subtasks = newUser.getSubTasks();
+    for (let index = subtasks.length - 1 ; index >= 0 ; index--) {
+        if(subtasks[index]['task'] == taskClass ){
+            newUser.deleteSubTask(index);
+        }
+    }
+    console.log(newUser.getSubTasks());
+    console.log(newUser.getTasks());
+    removeModal();
 }
 function settingsModal(){
     let userName = document.querySelector('#username').value

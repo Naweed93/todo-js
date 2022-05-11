@@ -109,8 +109,11 @@ export const user = (_username) =>{
             'name': subTaskName,
             'completed': false
         });
-    }
+    };
+    const deleteSubTask = (index) => {
+        _subTasks.splice(index, 1);
+    };
     return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length,
         deleteProject, deleteTask, task_length, addTask, changeProjectName, sub_task_length, getSubTasks,
-        editTask, addSubTask };
+        editTask, addSubTask, deleteSubTask };
 };

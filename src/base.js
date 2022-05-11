@@ -236,4 +236,6 @@ export function addTaskDetailPage(taskClass){
     buildModal.bind(null, 'editTask'));
     document.querySelector('.new-sub-task').addEventListener('click',
     buildModal.bind(null, 'addSubTask'));
+    document.querySelector('.delete-sub-task').addEventListener('click',
+    buildModal.bind(null, 'deleteTask'));
 }
