@@ -11,12 +11,12 @@ export function buildEventListeners(){
     buildModal.bind(null, 'editProject'));
     document.querySelector('.new-task').addEventListener('click',
     buildModal.bind(null, 'addTask'));
-    document.querySelector('.task-name svg').addEventListener('click',
-    buildModal.bind(null, 'editTask'));
-    document.querySelector('.new-sub-task').addEventListener('click',
-    buildModal.bind(null, 'addSubTask'));
-    document.querySelector('.delete-sub-task').addEventListener('click',
-    buildModal.bind(null, 'deleteTask'));
+    //document.querySelector('.task-name svg').addEventListener('click',
+    //buildModal.bind(null, 'editTask'));
+    //document.querySelector('.new-sub-task').addEventListener('click',
+    //buildModal.bind(null, 'addSubTask'));
+    //document.querySelector('.delete-sub-task').addEventListener('click',
+    //buildModal.bind(null, 'deleteTask'));
     for(let i = 0; i < document.querySelectorAll('.sidebar-projects>div').length - 1;i++){
         const project = document.querySelectorAll('.sidebar-projects>div')[i]
         project.addEventListener('click',addProjectTasksPage.bind(
