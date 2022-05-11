@@ -7,6 +7,8 @@ import { buildTaskEventListener, buildTaskCheckListener, buildSubTaskCheckListen
 
 export function buildwebsite(){
     document.body.append(sidebarComponent(), projectListComponent(), taskDetailsComponent());
+    buildTaskEventListener();
+    buildTaskCheckListener();
 }
 
 //changing project-list interface when clicking on projects in sidebar.
