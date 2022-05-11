@@ -101,9 +101,10 @@ function modalComponent(){
         addTask:addTask, addSubTask:addSubTask};
 }
 function addProjectModal(){
-    const myproject=document.createElement('div');
-    let className = 'project-' + (newUser.getProject().length -1);
-    let projectName = document.querySelector('#add-project').value;
+    const myproject = document.createElement('div');
+    newUser.project_length += 1;
+    const className = 'project-' + (newUser.project_length);
+    const projectName = document.querySelector('#add-project').value;
     newUser.addProject([className, projectName])
     myproject.classList.add(className);
     myproject.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder2" viewBox="0 0 16 16">
@@ -114,7 +115,7 @@ function addProjectModal(){
     `</p>`;
     document.querySelector('.sidebar-projects').insertBefore(myproject,document.querySelector('.new-project-btn'));
     myproject.addEventListener('click',addProjectTasksPage.bind(
-        null,newUser.getProject().length -1
+        null,className
     ));
     removeModal();
 }

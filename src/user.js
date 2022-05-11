@@ -33,6 +33,7 @@ export const user = (_username) =>{
     }
     ];
     let _theme = 'light';
+    let project_length = 2;
     const addProject = (project) => {
         _projects.push(project);
     };
@@ -51,5 +52,5 @@ export const user = (_username) =>{
     const setTheme = (theme) => {
         _theme = theme;
     };
-    return { addProject, getUsername, setUsername, getProject, getTasks, setTheme };
+    return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length };
 };

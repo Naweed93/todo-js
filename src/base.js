@@ -23,7 +23,15 @@ function addProjectSidebar(projectClass,projectName){
 
 //changing project-list interface when clicking on projects in sidebar.
 //today button behavior must be added
-export function addProjectTasksPage(index){
+export function addProjectTasksPage(projectClass){
+    let index = 0
+    for (let item of newUser.getProject()) {
+        if(item[0] == projectClass){
+            console.log(index);
+            break;
+        }
+        index += 1;
+    }
     //create container
     const projectList = document.querySelector('.project-list');
     projectList.innerHTML='';

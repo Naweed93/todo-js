@@ -20,8 +20,9 @@ export function buildEventListeners(){
     document.querySelector('.delete-sub-task').addEventListener('click',
     buildModal.bind(null, 'deleteTask'));
     for(let i = 0; i < document.querySelectorAll('.sidebar-projects>div').length - 1;i++){
-        document.querySelectorAll('.sidebar-projects>div')[i].addEventListener('click',addProjectTasksPage.bind(
-            null,i
+        const project = document.querySelectorAll('.sidebar-projects>div')[i]
+        project.addEventListener('click',addProjectTasksPage.bind(
+            null,project.classList[0]
         ));
     }
 }
