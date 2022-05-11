@@ -135,6 +135,15 @@ export function addProjectTasksPage(projectClass){
 
 //changing task-details interface when clicking on tasks in sidebar.
 export function addTaskDetailPage(taskClass){
+    //changing active task
+    const activeTask = document.querySelector('.active-task');
+    if (activeTask){
+        activeTask.classList.remove('active-task')
+    }
+    document.querySelector('.'+taskClass).classList.add('active-task');
+
+
+
     //getting task and subtask list.
     let task
     let subTasksList=[]

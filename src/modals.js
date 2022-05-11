@@ -1,6 +1,6 @@
 import {newUser} from "./index"
 import {addProjectTasksPage, addTaskDetailPage} from "./base"
-//add project, delete project, add task, settings connected to user
+//add project, delete project, edit project, add task, settings connected to user
 function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
