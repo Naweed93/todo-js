@@ -1,5 +1,5 @@
 import { buildModal } from "./modals";
-import { addProjectTasksPage, addTaskDetailPage, changeTaskStatus} from "./base";
+import { addProjectTasksPage, addTaskDetailPage, changeTaskStatus, changeSubTaskStatus} from "./base";
 
 
 export function buildEventListeners(){
@@ -36,5 +36,12 @@ export function buildTaskCheckListener(){
     const taskChecks = document.querySelectorAll('.project-task>input');
     for (const element of taskChecks) {
         element.addEventListener('change',changeTaskStatus.bind(null, element.id))
+    }
+}
+
+export function buildSubTaskCheckListener(){
+    const subTaskChecks = document.querySelectorAll('.sub-tasks input');
+    for (const element of subTaskChecks) {
+        element.addEventListener('change',changeSubTaskStatus.bind(null, element.id))
     }
 }

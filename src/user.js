@@ -121,7 +121,15 @@ export const user = (_username) =>{
     const deleteSubTask = (index) => {
         _subTasks.splice(index, 1);
     };
+    const changeSubTaskStatus = (index) => {
+        if (_subTasks[index]['completed'] ){
+            _subTasks[index]['completed'] = false ;
+        }
+        else{
+            _subTasks[index]['completed'] = true ;
+        }
+    };
     return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length,
         deleteProject, deleteTask, task_length, addTask, changeProjectName, sub_task_length, getSubTasks,
-        editTask, addSubTask, deleteSubTask, changeTaskStatus };
+        editTask, addSubTask, deleteSubTask, changeTaskStatus, changeSubTaskStatus };
 };
