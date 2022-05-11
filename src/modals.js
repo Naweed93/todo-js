@@ -1,6 +1,6 @@
 import {newUser} from "./index"
 import {addProjectTasksPage} from "./base"
-//add project, delete project, settings connected to user
+//add project, delete project, add task, settings connected to user
 function modalComponent(){
     const settingsInterface = document.createElement('div');
     const addProject = document.createElement('div');
@@ -120,8 +120,17 @@ function addProjectModal(){
     removeModal();
 }
 function editProjectModal(){
-    document.querySelector('.project-name h2').innerText = document.querySelector('#edit-project').value;
-    document.querySelector('.active-project p').innerText = document.querySelector('#edit-project').value;
+    const project = document.querySelector('.active-project');
+    const newProjectName = document.querySelector('#edit-project').value
+    document.querySelector('.project-name h2').innerText = newProjectName;
+    project.querySelector('p').innerText = newProjectName;
+    for (let item of newUser.getProject()) {
+        if(item[0] == project.classList[0]){
+            newUser.changeProjectName(newProjectName,newUser.getProject().indexOf(item));
+            break;
+        }
+    }
+    console.log(newUser.getProject())
     removeModal();
 }
 function addTaskModal(){
@@ -186,12 +195,9 @@ function settingsModal(){
     let userName = document.querySelector('#username').value
     document.querySelector('.settings p').innerText = userName;
     newUser.setUsername(userName);
-    console.log(newUser.getUsername())
-    console.log(newUser.getProject())
     removeModal();
 }
 function changeTheme(){
-    console.log(newUser.getUsername());
     const themeElement = document.querySelector('.slider');
     const theme = themeElement.innerText
     if(theme == 'light'){

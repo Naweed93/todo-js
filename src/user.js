@@ -44,6 +44,9 @@ export const user = (_username) =>{
     const deleteProject = (index) =>{
         _projects.splice(index, 1);
     };
+    const changeProjectName = (newName, index) => {
+        _projects[index][1] = newName;
+    };
     const getTasks = () => {
         return _tasks;
     };
@@ -68,5 +71,6 @@ export const user = (_username) =>{
     const setTheme = (theme) => {
         _theme = theme;
     };
-    return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length, deleteProject, deleteTask, task_length, addTask };
+    return { addProject, getUsername, setUsername, getProject, getTasks, setTheme, project_length,
+        deleteProject, deleteTask, task_length, addTask, changeProjectName };
 };
