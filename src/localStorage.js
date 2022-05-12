@@ -11,23 +11,18 @@ export function localStorageManager(order){
         newUser.setIsOnStart(false);
     }
     else if(order == 'add-project'){
-        console.log(order);
         setLocalStorageProjects();
     }
     else if(order == 'add-task'){
-        console.log(order);
         setLocalStorageTasks();
     }
     else if(order == 'add-sub-task'){
-        console.log(order);
         setLocalStorageSubTasks();
     }
     else if(order == 'add-username'){
-        console.log(order);
         setLocalStorageUsername();
     }
     else if(order == 'add-theme'){
-        console.log(order);
         setLocalStorageTheme();
     }
     //localStorage.clear();
@@ -43,6 +38,7 @@ function setLocalStorageProjects(){
         index += 1;
     }
     localStorage.setItem('projectNum',index);
+    localStorage.setItem('projectCounter',newUser.project_length)
 }
 function getLocalStorageProjects(){
     const index = localStorage.getItem('projectNum');
@@ -53,6 +49,7 @@ function getLocalStorageProjects(){
             newUser.addProject([localStorage.getItem(key1),localStorage.getItem(key2)]);
         }
     }
+    newUser.project_length = localStorage.getItem('projectCounter')*1;
 }
 
 function setLocalStorageTasks(){
@@ -63,6 +60,7 @@ function setLocalStorageTasks(){
         index += 1;
     }
     localStorage.setItem('task-num',index);
+    localStorage.setItem('taskCounter', newUser.task_length);
 }
 function getLocalStorageTasks(){
     let index = localStorage.getItem('task-num');
@@ -72,6 +70,7 @@ function getLocalStorageTasks(){
         newUser.addTask(taskObject['project'], taskObject['date'], taskObject['class'],
          taskObject['name'], taskObject['completed']);
     }
+    newUser.task_length = localStorage.getItem('taskCounter')*1;
 }
 
 function setLocalStorageSubTasks(){
@@ -82,6 +81,7 @@ function setLocalStorageSubTasks(){
         index += 1;
     }
     localStorage.setItem('sub-task-num',index);
+    localStorage.setItem('subTaskCounter', newUser.sub_task_length);
 }
 function getLocalStorageSubTasks(){
     let index = localStorage.getItem('sub-task-num');
@@ -90,13 +90,17 @@ function getLocalStorageSubTasks(){
         const subTaskObject = JSON.parse(localStorage.getItem(key));
         newUser.addSubTask(subTaskObject['task'],subTaskObject['class'],subTaskObject['name'],subTaskObject['completed']);
     }
+    newUser.sub_task_length = localStorage.getItem('subTaskCounter')*1;
 }
 
 function setLocalStorageUsername(){
     localStorage.setItem('username',newUser.getUsername());
 }
 function getLocalStorageUsername(){
-    newUser.setUsername(localStorage.getItem('username'));
+    const username = localStorage.getItem('username');
+    if (username){
+        newUser.setUsername(username);
+    }
 }
 
 function setLocalStorageTheme(){
