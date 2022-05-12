@@ -21,16 +21,17 @@ function modalComponent(){
     addTask.classList.add('add-task');
     addSubTask.classList.add('add-sub-task');
 
-
+    const username = document.querySelector('.settings p').innerHTML;
+    const theme = 'light';
     settingsInterface.innerHTML = `<div class="change-username">
     <p>Enter your name:</p>
-    <input type="text" id="username" name="username" placeholder="username">
+    <input value="`+username+`" type="text" id="username" name="username" placeholder="username">
 </div>
 <div class="change-theme">
     <p>Change theme:</p>
     <label class="switch">
         <input type="checkbox" id="theme-check">
-        <span class="slider light">light</span>
+        <span class="slider `+theme+`">`+theme+`</span>
     </label>
 </div>
 <div class="settings-buttons">
@@ -227,6 +228,19 @@ function settingsModal(){
     let userName = document.querySelector('#username').value
     document.querySelector('.settings p').innerText = userName;
     newUser.setUsername(userName);
+
+    const themeElement = document.querySelector('.slider');
+    const theme = themeElement.innerText
+    if(theme == 'light'){       
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
+        newUser.setTheme('light');
+    }
+    else{       
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
+        newUser.setTheme('dark')
+    }
     removeModal();
 }
 function changeTheme(){
@@ -236,13 +250,11 @@ function changeTheme(){
         themeElement.innerText = "dark";
         themeElement.classList.add('dark');
         themeElement.classList.remove('light');
-        newUser.setTheme('dark');
     }
     else{
         themeElement.innerText = "light";
         themeElement.classList.add('light');
-        themeElement.classList.remove('dark')
-        newUser.setTheme('light')
+        themeElement.classList.remove('dark');
     }
 }
 

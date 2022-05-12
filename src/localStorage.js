@@ -25,7 +25,6 @@ export function localStorageManager(order){
     else if(order == 'add-theme'){
         setLocalStorageTheme();
     }
-    //localStorage.clear();
 }
 
 function setLocalStorageProjects(){
@@ -104,9 +103,12 @@ function getLocalStorageUsername(){
 }
 
 function setLocalStorageTheme(){
-    localStorage.setItem('theme',newUser.getTheme);
+    localStorage.setItem('theme',newUser.getTheme());
 }
 
 function getLocalStorageTheme(){
-    newUser.setTheme(localStorage.getItem('theme'));
+    const theme = localStorage.getItem('theme');
+    if(theme=='light' || theme == 'dark'){
+        newUser.setTheme(theme);
+    }
 }
