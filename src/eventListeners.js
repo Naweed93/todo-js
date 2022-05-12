@@ -38,6 +38,10 @@ export function buildTaskCheckListener(){
         element.addEventListener('change',changeTaskStatus.bind(null, element.id))
     }
 }
+export function newTaskCheckListener(elementID){
+    const taskCheck = document.querySelector('#'+elementID);
+    taskCheck.addEventListener('change',changeTaskStatus.bind(null, elementID))
+}
 
 export function buildSubTaskCheckListener(){
     const subTaskChecks = document.querySelectorAll('.sub-tasks input');

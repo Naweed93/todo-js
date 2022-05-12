@@ -1,6 +1,6 @@
 import {newUser} from "./index"
 import {addProjectTasksPage, addTaskDetailPage} from "./base"
-import {buildTaskCheckListener} from "./eventListeners"
+import {newTaskCheckListener} from "./eventListeners"
 
 function modalComponent(){
     const settingsInterface = document.createElement('div');
@@ -150,7 +150,7 @@ function addTaskModal(){
     newUser.addTask(taskProject, taskDate, taskClass, taskName);
     document.querySelector("."+taskClass).addEventListener('click',addTaskDetailPage.bind(null, taskClass));
     removeModal();
-    buildTaskCheckListener();
+    newTaskCheckListener(taskClass);
 }
 function editTaskModal(){
     const taskName = document.querySelector('#edit-task').value;
