@@ -10,7 +10,7 @@
     border: none;
     text-decoration: none;
 }
-:root{
+:root .light-theme{
     --background-color : #f2f4ff;
     --background-color2 :#3c91e6;
     --background-color2-hover: #1c7ad9;
@@ -24,6 +24,25 @@
     --font-color-1: #dbebfa;
     --settings-border: #092948;
     --delete-border: #e41138;
+    --delete-color: #000;
+    --font-color-2: #000000;
+}
+:root .dark-theme{
+    --background-color : #cccccc; 
+    --background-color2 :#292929;
+    --background-color2-hover: #474747; 
+    --background-color3: #7a7a7a; 
+    --background-color4: #999999; 
+    --background-delete: #390516; 
+    --background-modal: #3c5967;
+    --background-modal-buttons: #0f161a73;
+    --settings-background: #0a0a0a; 
+    --scroll-bar-color: #6c756b; 
+    --font-color-1: #dbebfa; 
+    --settings-border: #999999;  
+    --delete-border: #130207; 
+    --delete-color: #fff;
+    --font-color-2: #dbebfa;
 }
 ::-webkit-scrollbar{
     width: 4px;
@@ -147,6 +166,7 @@ body{
     background-color: var(--background-delete);
     cursor: pointer;
     font-size: 16px;
+    color: var(--delete-color);
 }
 .task-list{
     margin: 70px 70px 0 70px;
@@ -235,6 +255,7 @@ body{
     line-height: 50px;
     background-color: var(--background-delete);
     cursor: pointer;
+    color: var(--delete-color);
 }
 .modal{
     position: fixed;
@@ -325,6 +346,7 @@ input:checked + .slider::before{
     background-color: var(--background-modal-buttons);
     border-radius: 10px;
     cursor: pointer;
+    color: var(--font-color-2);
 }
 .project-delete{
     background-color: var(--background-modal);
@@ -340,6 +362,7 @@ input:checked + .slider::before{
     border-radius: 10px;
     cursor: pointer;
     margin-top: 20px;
+    color: var(--font-color-2);
 }
 .task-delete{
     background-color: var(--background-modal);
@@ -385,6 +408,7 @@ input:checked + .slider::before{
     border-radius: 10px;
     cursor: pointer;
     margin-top: 20px;
+    color: var(--font-color-2);
 }
 .change-task-date{
     display: flex;
