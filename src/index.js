@@ -1,5 +1,5 @@
 import { buildwebsite } from "./base";
-import { buildEventListeners } from "./eventListeners"
+import { eventListenerManager } from "./eventListeners"
 import { user } from "./user"
 import { localStorageManager } from "./localStorage";
 
@@ -9,4 +9,4 @@ localStorageManager('start');
 
 buildwebsite();
 
-buildEventListeners();
+eventListenerManager('start');

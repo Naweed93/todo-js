@@ -3,12 +3,10 @@ import { projectListComponent } from "./projectList";
 import { taskDetailsComponent } from "./taskDetails";
 import { newUser } from "./index";
 import { buildModal } from "./modals";
-import { buildTaskEventListener, buildTaskCheckListener, buildSubTaskCheckListener, buildDeleteSubTaskListener } from "./eventListeners";
+import { eventListenerManager } from "./eventListeners";
 
 export function buildwebsite(){
     document.body.append(sidebarComponent(), projectListComponent(), taskDetailsComponent());
-    buildTaskEventListener();
-    buildTaskCheckListener();
 }
 
 //changing project-list interface when clicking on projects in sidebar.
@@ -125,8 +123,7 @@ export function addProjectTasksPage(projectClass){
         buildModal.bind(null, 'deleteProject'));
     }
 
-    buildTaskEventListener();
-    buildTaskCheckListener();
+    eventListenerManager('project-list-event-listeners')
 }
 
 //changing task-details interface when clicking on tasks in sidebar.
@@ -193,7 +190,14 @@ export function addTaskDetailPage(taskClass){
 
     for (let index = 0; index < subTaskItems.length; index++) {//loop to add every subtaskitem to .sub-tasks
         subTasks.append(subTaskItems[index]);
-        subTaskItems[index].innerHTML = `<input type="checkbox" id="`+subTasksList[index]['class']+`" name="`+subTasksList[index]['class']+`">`;
+        if(subTasksList[index]['completed']){
+            subTaskItems[index].innerHTML = `<input type="checkbox" checked id="`+
+            subTasksList[index]['class']+`" name="`+subTasksList[index]['class']+`">`;
+        }
+        else{
+            subTaskItems[index].innerHTML = `<input type="checkbox" id="`+
+            subTasksList[index]['class']+`" name="`+subTasksList[index]['class']+`">`;
+        }
         const subTaskName = document.createElement('div');
         subTaskName.classList.add('sub-task-name');
         subTaskItems[index].append(subTaskName);
@@ -229,8 +233,7 @@ export function addTaskDetailPage(taskClass){
     document.querySelector('.delete-sub-task').addEventListener('click',
     buildModal.bind(null, 'deleteTask'));
 
-    buildSubTaskCheckListener();
-    buildDeleteSubTaskListener();
+    eventListenerManager('task-details-event-listeners')
 
 }
 
@@ -257,7 +260,6 @@ export function changeTaskStatus(taskClass){
 export function changeSubTaskStatus(subTaskClass){
     for (const item of newUser.getSubTasks()) {
         if(item['class'] == subTaskClass){
-            console.log(item['completed']);
             newUser.changeSubTaskStatus(newUser.getSubTasks().indexOf(item));
             break;
         }
@@ -270,7 +272,6 @@ export function deleteSubTaskElement(subTaskClass){
         if( item['class'] == subTaskClass){
             newUser.deleteSubTask(newUser.getSubTasks().indexOf(item));
             subTask.parentElement.removeChild(subTask);
-            console.log(newUser.getSubTasks())
             break;
         }
     }

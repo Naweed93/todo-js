@@ -44,7 +44,6 @@ export const user = (_username) =>{
             "name":taskName,
             "completed":taskCompleted
         });
-        console.log (!_isOnStart)
         if(!_isOnStart){
             localStorageManager('add-task');
             document.querySelectorAll(".sidebar-statistics p")[1].innerText ='total tasks: '+ _tasks.length;

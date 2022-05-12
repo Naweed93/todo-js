@@ -1,6 +1,6 @@
 import {newUser} from "./index"
 import {addProjectTasksPage, addTaskDetailPage} from "./base"
-import {newTaskCheckListener,newSubTaskCheckListener, newDeleteSubTaskListener} from "./eventListeners"
+import {eventListenerManager} from "./eventListeners"
 
 function modalComponent(){
     const settingsInterface = document.createElement('div');
@@ -150,7 +150,7 @@ function addTaskModal(){
     newUser.addTask(taskProject, taskDate, taskClass, taskName);
     document.querySelector("."+taskClass).addEventListener('click',addTaskDetailPage.bind(null, taskClass));
     removeModal();
-    newTaskCheckListener(taskClass);
+    eventListenerManager('new-task', taskClass)
 }
 function editTaskModal(){
     const taskName = document.querySelector('#edit-task').value;
@@ -184,8 +184,7 @@ function addSubTaskModal(){
       document.querySelector('.sub-tasks').insertBefore(addedSubTask, document.querySelector('.new-sub-task'));
       newUser.addSubTask(subTaskParent,subTaskClass,subTaskName);
     removeModal();
-    newSubTaskCheckListener(subTaskClass);
-    newDeleteSubTaskListener(subTaskClass);
+    eventListenerManager('new-sub-task',subTaskClass)
 }
 function deleteProjectModal(){
     const activeProject = document.querySelector('.active-project');

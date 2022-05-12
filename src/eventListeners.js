@@ -1,8 +1,30 @@
 import { buildModal } from "./modals";
 import { addProjectTasksPage, addTaskDetailPage, changeTaskStatus, changeSubTaskStatus, deleteSubTaskElement} from "./base";
 
+export function eventListenerManager(order, detail=''){
+    if (order == 'start'){
+        startEventListener();
+        buildTaskEventListener();
+        buildTaskCheckListener();
+    }
+    else if (order == 'project-list-event-listeners'){
+        buildTaskEventListener();
+        buildTaskCheckListener();
+    }
+    else if (order == 'task-details-event-listeners'){
+        buildSubTaskCheckListener();
+        buildDeleteSubTaskListener();
+    }
+    else if (order == 'new-sub-task'){
+        newSubTaskCheckListener(detail);
+        newDeleteSubTaskListener(detail);
+    }
+    else if (order == 'new-task'){
+        newTaskCheckListener(detail);
+    }
+}
 
-export function buildEventListeners(){
+function startEventListener(){
     document.querySelector('.new-project-btn').addEventListener('click',
     buildModal.bind(null, 'addProject'));
     document.querySelector('.settings svg').addEventListener('click',
@@ -25,44 +47,45 @@ export function buildEventListeners(){
     }
 }
 
-export function buildTaskEventListener(){
+function buildTaskEventListener(){
     const task = document.querySelectorAll('.project-task');
     for (let element of task) {
         element.addEventListener('click',addTaskDetailPage.bind(null, element.classList[0]));
     }
 }
 
-export function buildTaskCheckListener(){
+function buildTaskCheckListener(){
     const taskChecks = document.querySelectorAll('.project-task>input');
     for (const element of taskChecks) {
         element.addEventListener('change',changeTaskStatus.bind(null, element.id))
     }
 }
-export function newTaskCheckListener(elementID){
+
+function newTaskCheckListener(elementID){
     const taskCheck = document.querySelector('#'+elementID);
     taskCheck.addEventListener('change',changeTaskStatus.bind(null, elementID));
 }
 
-export function buildSubTaskCheckListener(){
+function buildSubTaskCheckListener(){
     const subTaskChecks = document.querySelectorAll('.sub-tasks input');
     for (const element of subTaskChecks) {
         element.addEventListener('change',changeSubTaskStatus.bind(null, element.id))
     }
 }
 
-export function buildDeleteSubTaskListener(){
+function buildDeleteSubTaskListener(){
     const subTasks = document.querySelectorAll('.sub-tasks input');
     for (const element of subTasks) {
         document.querySelector('.'+element.id+' svg').addEventListener('click',deleteSubTaskElement.bind(null, element.id))
     }
 }
 
-export function newSubTaskCheckListener(elementID){
+function newSubTaskCheckListener(elementID){
     const subTaskCheck = document.querySelector('#'+elementID);
     subTaskCheck.addEventListener('change', changeSubTaskStatus.bind(null, elementID));
 }
 
-export function newDeleteSubTaskListener(elementID){
+function newDeleteSubTaskListener(elementID){
     const subTask = document.querySelector('.'+elementID+' svg');
     subTask.addEventListener('click',deleteSubTaskElement.bind(null, elementID))
 }
