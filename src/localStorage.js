@@ -2,10 +2,13 @@ import { newUser } from "./index";
 
 export function localStorageManager(order){
     if (order == 'start'){
-        console.log(order);
+        newUser.setIsOnStart(true);
         getLocalStorageProjects();
         getLocalStorageTasks();
         getLocalStorageSubTasks();
+        getLocalStorageUsername();
+        getLocalStorageTheme();
+        newUser.setIsOnStart(false);
     }
     else if(order == 'add-project'){
         console.log(order);
@@ -19,10 +22,18 @@ export function localStorageManager(order){
         console.log(order);
         setLocalStorageSubTasks();
     }
-    localStorage.clear()
+    else if(order == 'add-username'){
+        console.log(order);
+        setLocalStorageUsername();
+    }
+    else if(order == 'add-theme'){
+        console.log(order);
+        setLocalStorageTheme();
+    }
+    //localStorage.clear();
 }
 
-export function setLocalStorageProjects(){
+function setLocalStorageProjects(){
     let index = 0;
     for (const item of newUser.getProject()) {
         const key1 = 'project-class-'+ index;
@@ -36,13 +47,15 @@ export function setLocalStorageProjects(){
 function getLocalStorageProjects(){
     const index = localStorage.getItem('projectNum');
     for (let i = 0; i < index; i++) {
-        const key1 = 'project-class-'+ i;
-        const key2 = 'project-name-'+ i;
-        newUser.addProject([localStorage.getItem(key1),localStorage.getItem(key2)]);
+        if (i>1){
+            const key1 = 'project-class-'+ i;
+            const key2 = 'project-name-'+ i;
+            newUser.addProject([localStorage.getItem(key1),localStorage.getItem(key2)]);
+        }
     }
 }
 
-export function setLocalStorageTasks(){
+function setLocalStorageTasks(){
     let index = 0;
     for (const item of newUser.getTasks()) {
         const key = "task-" + index;
@@ -61,7 +74,7 @@ function getLocalStorageTasks(){
     }
 }
 
-export function setLocalStorageSubTasks(){
+function setLocalStorageSubTasks(){
     let index = 0;
     for (const item of newUser.getSubTasks()) {
         const key = "sub-task-" + index;
@@ -77,4 +90,19 @@ function getLocalStorageSubTasks(){
         const subTaskObject = JSON.parse(localStorage.getItem(key));
         newUser.addSubTask(subTaskObject['task'],subTaskObject['class'],subTaskObject['name'],subTaskObject['completed']);
     }
+}
+
+function setLocalStorageUsername(){
+    localStorage.setItem('username',newUser.getUsername());
+}
+function getLocalStorageUsername(){
+    newUser.setUsername(localStorage.getItem('username'));
+}
+
+function setLocalStorageTheme(){
+    localStorage.setItem('theme',newUser.getTheme);
+}
+
+function getLocalStorageTheme(){
+    newUser.setTheme(localStorage.getItem('theme'));
 }

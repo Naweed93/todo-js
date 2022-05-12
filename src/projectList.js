@@ -1,5 +1,4 @@
 import { newUser } from "./index";
-import { buildTaskCheckListener, buildTaskEventListener } from "./eventListeners";
 
 export function projectListComponent(){
     const projectList = document.createElement('div');
