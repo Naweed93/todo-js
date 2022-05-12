@@ -6,17 +6,19 @@ export const user = (_username) =>{
     let _subTasks = [];
     let _theme = 'light';
     let project_length = 2;
-    let task_length = 5;
-    let sub_task_length = 4;
+    let task_length = 0;
+    let sub_task_length = 0;
     const addProject = (project) => {
         _projects.push(project);
         localStorageManager('add-project');
+        document.querySelector(".sidebar-statistics p:first-child").innerText ='total projects: '+ _projects.length;
     };
     const getProject = () =>{
         return _projects;
     };
     const deleteProject = (index) =>{
         _projects.splice(index, 1);
+        document.querySelector(".sidebar-statistics p:first-child").innerText ='total projects: '+ _projects.length;
     };
     const changeProjectName = (newName, index) => {
         _projects[index][1] = newName;
@@ -26,6 +28,7 @@ export const user = (_username) =>{
     };
     const deleteTask = (index) => {        
             _tasks.splice(index, 1);   
+            document.querySelectorAll(".sidebar-statistics p")[1].innerText ='total tasks: '+ _tasks.length;
     };
     const addTask = (taskProject,taskDate,taskClass,taskName, taskCompleted = false) => {
         _tasks.push({
@@ -36,6 +39,7 @@ export const user = (_username) =>{
             "completed":taskCompleted
         });
         localStorageManager('add-task');
+        document.querySelectorAll(".sidebar-statistics p")[1].innerText ='total tasks: '+ _tasks.length;
     };
     const editTask = (taskName,taskDate,index) => {
         _tasks[index]['name']=taskName;
