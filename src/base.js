@@ -44,9 +44,16 @@ export function addProjectTasksPage(projectClass){
 
     const tasks = []
     for (let item of newUser.getTasks()) {  //selecting tasks of the specific project.
+        const today = document.querySelectorAll('.sidebar-statistics p')[2].innerHTML;
         if(index>1){ //index = 0 means all tasks, index=1 means today tasks
             if(item['project'] == newUser.getProject()[index][0]){
                 tasks.push([document.createElement('div'),item['class'],item['completed'],item['name'],item['date']]);
+            }
+        }
+        else if(index == 1){
+            if( item['date'].replace('-','').replace('-','').trim()==
+                today.replace('-','').replace('-','').trim() ){
+                    tasks.push([document.createElement('div'),item['class'],item['completed'],item['name'],item['date']]);
             }
         }
         else{
@@ -62,6 +69,9 @@ export function addProjectTasksPage(projectClass){
     activeTasks.classList.add('active-tasks');
     completedTasks.classList.add('completed-tasks');
     newTask.classList.add('new-task');
+    if( index == 1){//remove new task from "today" project-list
+        newTask.classList.add('hidden');
+    }
     
     for (let item of tasks) {
         item[0].classList.add(item[1], 'project-task');
@@ -82,7 +92,7 @@ export function addProjectTasksPage(projectClass){
             completedTasks.append(item[0]);
         }
     }
-    activeTasks.append(newTask);
+        activeTasks.append(newTask);
 
     if(index>1){    //delete project button shouldn't appear for all tasks and today tasks.
         const projectDeleteBtn = document.createElement('p');
