@@ -40,7 +40,7 @@ export function buildTaskCheckListener(){
 }
 export function newTaskCheckListener(elementID){
     const taskCheck = document.querySelector('#'+elementID);
-    taskCheck.addEventListener('change',changeTaskStatus.bind(null, elementID))
+    taskCheck.addEventListener('change',changeTaskStatus.bind(null, elementID));
 }
 
 export function buildSubTaskCheckListener(){
@@ -55,4 +55,14 @@ export function buildDeleteSubTaskListener(){
     for (const element of subTasks) {
         document.querySelector('.'+element.id+' svg').addEventListener('click',deleteSubTaskElement.bind(null, element.id))
     }
+}
+
+export function newSubTaskCheckListener(elementID){
+    const subTaskCheck = document.querySelector('#'+elementID);
+    subTaskCheck.addEventListener('change', changeSubTaskStatus.bind(null, elementID));
+}
+
+export function newDeleteSubTaskListener(elementID){
+    const subTask = document.querySelector('.'+elementID+' svg');
+    subTask.addEventListener('click',deleteSubTaskElement.bind(null, elementID))
 }
