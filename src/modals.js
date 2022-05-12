@@ -1,5 +1,6 @@
 import {newUser} from "./index"
 import {addProjectTasksPage, addTaskDetailPage} from "./base"
+import {buildTaskCheckListener} from "./eventListeners"
 
 function modalComponent(){
     const settingsInterface = document.createElement('div');
@@ -139,7 +140,7 @@ function addTaskModal(){
     const taskDate = document.querySelector('#add-task-date').value
     const taskProject = document.querySelector('.active-project').classList[0];
     const taskClass = 'task-' + newUser.task_length
-    addedTask.classList.add(taskClass);
+    addedTask.classList.add(taskClass,'project-task');
     addedTask.innerHTML = `<input type="checkbox" id="`+taskClass+`" name="`+taskClass+`"">
     <div class="task-content">
         <p>`+ taskName + `</p>
@@ -149,6 +150,7 @@ function addTaskModal(){
     newUser.addTask(taskProject, taskDate, taskClass, taskName);
     document.querySelector("."+taskClass).addEventListener('click',addTaskDetailPage.bind(null, taskClass));
     removeModal();
+    buildTaskCheckListener();
 }
 function editTaskModal(){
     const taskName = document.querySelector('#edit-task').value;
